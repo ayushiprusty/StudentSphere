@@ -140,3 +140,19 @@ body{
     font-size: 14px;
     color: #94a3b8
 }
+
+@media (max-width: 768px){
+    .navbar{
+        padding: 20px;
+    }
+    .hero h2{
+        font-size: 36px;
+    }
+    .hero p{
+        width: 90%;
+    }
+    .feature-container{
+        flex-direction: column;
+        align-items: center;
+    }
+}
