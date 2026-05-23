@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Dashboard - StudentSphere</title>
+        <link rel="stylesheet" href="../Dashboard/dashboard.css">
+    </head>
+    <body>
+        <div class="dashboard">
+            <aside class="sidebar">
+                <h2>StudentSphere</h2>
+                <ul>
+                    <li>Dashboard</li>
+                    <li>Attendance</li>
+                    <li>Tasks</li>
+                    <li>Timetable</li>
+                    <li>Settings</li>
+                </ul>
+            </aside>
+            <main class="main-content">
+                <button id="themeToggle">Toggle Theme</button>
+                <h1>Welcome Back, Ayushi !</h1>
+                <div class="dashboard-cards">
+                    <div class="task-section">
+                        <h2>Task Manager</h2>
+                        <div class="task-input-area">
+                            <input type="text" id="taskInput" placeholder="Enter a task">
+                            <button id="addTaskbtn">Add Task</button>
+                        </div>
+                        <p id="taskMessage"></p>
+                        <ul id="taskList"></ul>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Attendance</h3>
+                        <p id="attendanceText">82%</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Tasks Pending</h3>
+                        <p>5 Tasks</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Today's Mood</h3>
+                        <p>Focused</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="../app.js"></script>
+    </body>
+</html>
