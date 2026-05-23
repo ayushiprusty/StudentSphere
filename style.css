@@ -5,9 +5,9 @@
 }
 
 body{
-    background-color: #0f172a;
-    color:white;
-    font-family: Arial, Helvetica, sans-serif
+    background: linear-gradient(to bottom right, #0f172a, #1e293b);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar{
@@ -22,12 +22,19 @@ body{
 }
 
 .login-btn{
-    padding: 10px 20px;
+    padding: 10px 22px;
     border: none;
-    border-radius: 8px;
-    background-color: #38bdf8;
+    border-radius: 10px;
+    background: linear-gradient(to right, #38bdf8, #0ea5e9);
     color: white;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover{
+    transform: scale(1.05);
+    opacity: 0.9;
 }
 
 .hero{
@@ -51,14 +58,23 @@ body{
     margin-bottom: 30px;
     line-height: 1.6;
 } 
+
 .start-btn{
-    padding: 15px 30px;
+    padding: 15px 32px;
     border: none;
-    border-radius: 10px;
-    background-color: #22c55e;
+    border-radius: 12px;
+    background: linear-gradient(to right, #22c55e, #16a34a);
     color: white;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(34, 197, 94,0.3);
+}
+
+.start-btn:hover{
+    transform: translateY(-3px);
+    opacity: 0.9;
 }
 
 .features{
@@ -83,6 +99,7 @@ body{
     padding: 30px;
     width: 250px;
     border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     transition: 0.3s;
 }
 
