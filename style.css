@@ -1,5 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
 body{
     background-color: #0f172a;
     color:white;
     font-family: Arial, Helvetica, sans-serif
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.logo{
+    font-size:28px;
+}
+
+.login-btn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #38bdf8;
+    color: white;
+    cursor: pointer;
+}
+
+.hero{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h2{
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p{
+    width: 60%;
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+} 
+.start-btn{
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #22c55e;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
