@@ -99,3 +99,27 @@ body{
 .feature-card p{
     line-height: 1.6;
 }
+
+.footer{
+    background-color: #020617;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer h3{
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+.footer p{
+    margin-bottom: 10px;
+    color: #cbd5e1;
+    line-height: 1,6;
+}
+
+.copyright{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #94a3b8
+}
