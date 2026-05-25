@@ -40,6 +40,17 @@ body{
     color: #38bdf8;
 }
 
+.sidebar ul li a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover{
+    color: #38bdf8;
+}
+
 .main-content{
     flex: 1;
     padding: 40px;
@@ -122,8 +133,13 @@ body{
     margin-bottom: 15px;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+#taskList li:hover{
+    transform: translateY(-3px);
+    transition:0.3s;
 }
 
 .delete-btn{
@@ -139,6 +155,7 @@ body{
 .completed{
     text-decoration: line-through;
     opacity: 0.6;
+    color: #94a3b8;
 }
 
 #themeToggle{
@@ -205,3 +222,191 @@ body{
     font-weight: bold;
     color: #f87171;
 }
+
+.edit-btn{
+    margin-left: 10px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-btn:hover{
+    background-color: #2563eb;
+    transform: scale(1.05);
+}
+
+.edit-input{
+    flex:1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #38bdf8;
+    outline: none;
+    font-size: 14px;
+}
+
+.save-btn{
+    margin-left: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #22c55e;
+    color: white;
+    cursor: pointer;
+}
+
+.cancel-btn{
+    margin-left: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ef4444;
+    color: white;
+    cursor: pointer;
+}
+
+.completed .edit-btn{
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.completed .delete-btn{
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.filter-buttons{
+    display:flex;
+    gap: 10px;
+    margin: 10px 0 20px 0;
+}
+
+.filter-buttons button{
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #334155;
+    color: white;
+    transition: 0.3s;
+}
+
+.filter-buttons button:hover{
+    background-color: #38bdf8;
+    color: black;
+}
+
+.active-filter{
+    background-color: #38bdf8 ;
+    color: black ;
+    font-weight: bold;
+}
+
+#searchTask{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 15px;
+}
+
+#prioritySelect{
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+}
+
+.priority-tag{
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.high{
+    background-color: #ef4444;
+    color: white;
+}
+
+.medium{
+    background-color: #f59e0b;
+    color: white;
+}
+
+.low{
+    background-color: #22c55e;
+    color: white;
+}
+
+#dueDateInput{
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+}
+
+.due-date{
+    margin-left: 10px;
+    font-size: 13px;
+    color: #cbd5e1;
+}
+
+#emptyState{
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+#toast{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #1e293b;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+#toast.show{
+    opacity: 1;
+    transform: translateY(-10px);
+}
+
+.overdue{
+    border: 2px solid #ef4444;
+    background-color: rgba(239,68,68,0.1);
+}
+
+.overdue .due-date{
+    color: #f87171;
+    font-weight: bold;
+}
+
+#sortTasks{
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 15px;
+}
+
+.hidden-section{
+    display: none;
+}
+

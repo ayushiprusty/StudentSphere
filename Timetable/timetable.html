@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Timetable - StudentSphere</title>
+        <link rel="stylesheet" href="../Timetable/timetable.css">
+    </head>
+    <body>
+                   <div class="timetable-container">
+                       <h2>Class Timetable</h2>
+                   <div class="timetable-input-area">
+                       <input type="text" id="subjectInput" placeholder="Enter subject">
+                       <input type="time" id="timeInput">
+                       <select id="daySelect">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                       </select>
+                       <button id="addScheduleBtn">Add</button>
+                    </div>
+                    <div id="timetableList"></div>
+                    <p id="emptyTimetable"> No timetable added yet 📚</p>
+                    </div>
+                    <div id="toast"></div>
+             <script src="../Timetable/timetable.js"></script>      
+    </body>
+</html>

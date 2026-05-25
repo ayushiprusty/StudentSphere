@@ -8,26 +8,18 @@
             <aside class="sidebar">
                 <h2>StudentSphere</h2>
                 <ul>
-                    <li>Dashboard</li>
-                    <li>Attendance</li>
-                    <li>Tasks</li>
-                    <li>Timetable</li>
-                    <li>Settings</li>
+                    <li><a href="../Dashboard/dashboard.html">Dashboard</a></li>
+                    <li><a href="../Attendance/attendance.html">Attendance</a></li>
+                    <li><a href="../Dashboard/dashboard.html#tasksSection">Tasks</a></li>
+                    <li><a href="../Timetable/timetable.html">Timetable</a></li>
+                    <li><a href="../Settings/settings.html">Settings</a></li>
                 </ul>
             </aside>
             <main class="main-content">
                 <button id="themeToggle">Toggle Theme</button>
                 <h1>Welcome Back, Ayushi !</h1>
+                <div id="dashboardSection">
                 <div class="dashboard-cards">
-                    <div class="task-section">
-                        <h2>Task Manager</h2>
-                        <div class="task-input-area">
-                            <input type="text" id="taskInput" placeholder="Enter a task">
-                            <button id="addTaskbtn">Add Task</button>
-                        </div>
-                        <p id="taskMessage"></p>
-                        <ul id="taskList"></ul>
-                    </div>
                     <div class="dashboard-card">
                         <h3>Attendance</h3>
                         <p id="attendanceText">82%</p>
@@ -37,15 +29,50 @@
                     </div>
                     <div class="dashboard-card">
                         <h3>Tasks Pending</h3>
-                        <p>5 Tasks</p>
+                        <p id="taskCount">0 Tasks</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Productivity</h3>
+                        <p id="productivityText">0%</p>
                     </div>
                     <div class="dashboard-card">
                         <h3>Today's Mood</h3>
                         <p>Focused</p>
                     </div>
                 </div>
+                </div>
+                <div id="tasksSection">
+                    <div class="task-section">
+                        <h2>Task Manager</h2>
+                        <div class="task-input-area">
+                            <input type="text" id="taskInput" placeholder="Enter a task">
+                            <select id="prioritySelect">
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                            </select>
+                            <input type="date" id="dueDateInput">
+                            <button id="addTaskbtn">Add Task</button>
+                        </div>
+                        <p id="taskMessage"></p>
+                        <div class="filter-buttons">
+                            <button id="allFilter">All</button>
+                            <button id="activeFilter">Active</button>
+                            <button id="completedFilter">Completed</button>
+                        </div>
+                        <select id="sortTasks">
+                        <option value="default">Sort By</option>
+                        <option value="high">High Priority</option>
+                        <option value="dueDate">Due Date</option>
+                        </select>
+                        <input type="text" id="searchTask" placeholder="Search tasks">
+                        <p id="emptyState">No tasks yet 🚀</p>
+                        <ul id="taskList"></ul>
+                    </div>
+                    </div>
             </main>
         </div>
+        <div id="toast"></div>
         <script src="../app.js"></script>
     </body>
 </html>
