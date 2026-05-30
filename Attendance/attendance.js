@@ -10,6 +10,8 @@ function saveAttendance(){
     const cards = document.querySelectorAll(".attendance-card");
 
     cards.forEach(function(card){
+    console.log(card.querySelector(".attendance-total").textContent);
+    console.log(card.querySelector(".attendance-attended").textContent);
 
         attendanceData.push({
             subject: card.querySelector(".attendance-subject").textContent,
@@ -33,11 +35,11 @@ function createAttendanceCard(attendanceObj){
     subject.classList.add("attendance-subject");
 
     const total = document.createElement("p");
-    total.textContent = attendanceObj.total;
+    total.innerHTML = "" + attendanceObj.total;
     total.classList.add("attendance-total");
 
     const attended = document.createElement("p");
-    attended.textContent = attendanceObj.attended;
+    attended.innerHTML = " " + attendanceObj.attended;
     attended.classList.add("attendance-attended");
 
     const percentage = document.createElement("p");
@@ -75,6 +77,7 @@ function createAttendanceCard(attendanceObj){
         card.remove();
 
         saveAttendance();
+        updateOverallAttendance();
 
     });
 
@@ -88,6 +91,7 @@ function createAttendanceCard(attendanceObj){
     attendanceList.appendChild(card);
 
     saveAttendance();
+    updateOverallAttendance();
 }
 
 addAttendanceBtn.addEventListener("click", function(){
@@ -134,5 +138,40 @@ window.addEventListener("load", function(){
         createAttendanceCard(attendanceObj);
 
     });
+    updateOverallAttendance();
 
 });
+
+function updateOverallAttendance(){
+
+    const cards = document.querySelectorAll(".attendance-card");
+
+    let totalClasses = 0;
+    let attendedClasses = 0;
+
+    cards.forEach(function(card){
+
+        totalClasses += Number(
+        card.querySelector(".attendance-total")
+        .textContent.replace("Total Classes: ","")
+    );
+
+        attendedClasses += Number(
+            card.querySelector(".attendance-attended")
+            .textContent.replace("Classes Attended: ","")
+        );
+    });
+
+    const percentage =
+        totalClasses === 0
+        ? 0
+        : Math.round((attendedClasses / totalClasses) * 100);
+
+    document.getElementById("overallPercentage").textContent =
+        percentage + "%";
+
+    document.getElementById("overallProgress").style.width =
+        percentage + "%";
+
+    localStorage.setItem("overallAttendance",percentage);
+}

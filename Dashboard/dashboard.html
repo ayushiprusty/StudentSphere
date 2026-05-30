@@ -17,15 +17,21 @@
             </aside>
             <main class="main-content">
                 <button id="themeToggle">Toggle Theme</button>
-                <h1>Welcome Back, Ayushi !</h1>
+                <div class="profile-header">
+
+                <img id="dashboardProfileImage" src="../Images/Default-avatar.png" alt="Profile">
+               <h1 id="welcomeText">Welcome Back!</h1>
+               </div>
                 <div id="dashboardSection">
                 <div class="dashboard-cards">
                     <div class="dashboard-card">
                         <h3>Attendance</h3>
                         <p id="attendanceText">82%</p>
+                         <p id="attendanceStatus">Safe Attendance</p>
                         <div class="progress-bar">
                             <div class="progress-fill"></div>
                         </div>
+                        <p id="attendanceWarning"></p>
                     </div>
                     <div class="dashboard-card">
                         <h3>Tasks Pending</h3>
@@ -36,8 +42,33 @@
                         <p id="productivityText">0%</p>
                     </div>
                     <div class="dashboard-card">
-                        <h3>Today's Mood</h3>
-                        <p>Focused</p>
+                    <h3>Today's Mood</h3>
+                    <select id="moodSelect">
+                    <option>😊 Happy</option>
+                    <option>🎯 Focused</option>
+                    <option>😴 Tired</option>
+                    <option>😓 Stressed</option>
+                    <option>🤩 Excited</option>
+                    </select>
+                    </div>
+                    <div class="dashboard-card">
+                    <h3>Study Streak</h3>
+                    <p id="streakText">0 Days 🔥</p>
+                    </div>
+                    <div class="dashboard-card">
+                    <h3>Upcoming Deadline</h3>
+                    <p id="upcomingTask">No deadlines</p>
+                    </div>
+                    <div class="dashboard-card">
+                    <h3>Study Timer</h3>
+                    <p id="timerText">25:00</p>
+                    <button id="startTimer">Start</button>
+                    <button id="pauseTimer">Pause</button>
+                    <button id="resetTimer">Reset</button>
+                    </div>
+                    <div class="dashboard-card">
+                    <h3>Daily Motivation</h3>
+                    <p id="quoteText"></p>
                     </div>
                 </div>
                 </div>

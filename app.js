@@ -53,12 +53,18 @@ function createTaskElement(taskObj){
         e.stopPropagation();
 
         li.classList.toggle("completed");
+        if(li.classList.contains("completed")){
+        updateStreak();
+        }
+    
         checkOverdueTasks();
 
         saveTasks();
         updateTaskCount();
         updateAttendance();
         updateProductivity();
+        updateUpcomingTask();
+        updateStreak();
     });
 
     const editBtn = document.createElement("button");
@@ -95,6 +101,8 @@ function createTaskElement(taskObj){
         updateAttendance();
         updateEmptyState();
         updateProductivity();
+        updateUpcomingTask();
+        updateStreak();
     });
 
     li.appendChild(taskSpan);
@@ -143,6 +151,7 @@ function createTaskElement(taskObj){
     updateAttendance();
     checkOverdueTasks();
     updateProductivity();
+    updateUpcomingTask();
     taskInput.value = "";
 
     taskInput.placeholder = "Enter a task";
@@ -166,6 +175,9 @@ updateTaskCount();
 updateAttendance();
 checkOverdueTasks();
 updateProductivity();
+updateUpcomingTask();
+updateStreak();
+loadQuote();
 const savedTheme = localStorage.getItem("theme");
 
 if(savedTheme === "light"){
@@ -185,11 +197,19 @@ themeToggle.addEventListener("click",function(){
         localStorage.setItem("theme","dark");
     }
 });
-const progressFill = document.querySelector(".progress-fill");
-const attendanceText = document.getElementById("attendanceText");
-let attendance = 82;
-progressFill.style.width = attendance + "%";
-attendanceText.textContent = attendance + "%";
+
+const progressFill =
+document.querySelector(".progress-fill");
+
+const attendanceText =
+document.getElementById("attendanceText");
+
+const savedAttendance =
+localStorage.getItem("overallAttendance") || 0;
+
+progressFill.style.width = savedAttendance + "%";
+
+attendanceText.textContent = savedAttendance + "%";
 
 function updateEmptyState(){
     const emptyState = document.getElementById("emptyState");
@@ -208,12 +228,42 @@ function updateTaskCount(){
     taskCount.textContent = pendingTasks + " Tasks";
     updateEmptyState();
 }
+
 function updateAttendance(){
-    const totalTasks = document.querySelectorAll("#taskList li").length;
-    const completedTasks = document.querySelectorAll("#taskList li.completed").length;
-    let attendance = totalTasks === 0 ? 0 : Math.round((completedTasks / totalTasks) * 100);
-    progressFill.style.width = attendance + "%";
-    attendanceText.textContent = attendance + "%";
+
+    const savedAttendance = Number(localStorage.getItem("overallAttendance")) || 0;
+
+    progressFill.style.width = savedAttendance + "%";
+
+    if(savedAttendance < 75){
+    progressFill.style.background ="crimson";
+}
+else if(savedAttendance < 85){
+    progressFill.style.background = "orange";
+}
+else{
+    progressFill.style.background ="linear-gradient(to right,#22c55e,#16a34a)";
+
+}
+   const warning =document.getElementById("attendanceWarning");
+   if(savedAttendance < 75){
+     warning.textContent = "Attendance below 75%";
+     warning.style.color = "#ef4444";
+    }
+    else{
+     warning.textContent = "Attendance is safe";
+     warning.style.color = "#22c55e";
+    }
+    attendanceText.textContent = savedAttendance + "%";
+
+    const attendanceStatus = document.getElementById("attendanceStatus");
+
+    if(savedAttendance < 75){
+         attendanceStatus.textContent = "Low Attendance";
+    }
+    else{
+         attendanceStatus.textContent = "Safe Attendance";
+    }
 }
 
 function updateProductivity(){
@@ -366,60 +416,164 @@ sortTasks.addEventListener("change", function(){
     });
 });
 
-const dashboardNav = document.getElementById("dashboardNav");
-const attendanceNav = document.getElementById("attendanceNav");
-const tasksNav = document.getElementById("tasksNav");
-const timetableNav = document.getElementById("timetableNav");
-const settingsNav = document.getElementById("settingsNav");
+const welcomeText =document.getElementById("welcomeText");
 
-const dashboardSection = document.getElementById("dashboardSection");
-const tasksSection = document.getElementById("tasksSection");
-const attendanceSection = document.getElementById("attendanceSection");
-const timetableSection = document.getElementById("timetableSection");
-const settingsSection = document.getElementById("settingsSection");
+const profileImage =document.getElementById("dashboardProfileImage");
 
-function hideAllSections(){
+const savedName =localStorage.getItem("studentName");
 
-    dashboardSection.style.display = "none";
-    tasksSection.style.display = "none";
-    attendanceSection.style.display = "none";
-    timetableSection.style.display = "none";
-    settingsSection.style.display = "none";
+const savedImage =localStorage.getItem("profileImage");
+
+const hour = new Date().getHours();
+
+let greeting = "Welcome";
+
+if(hour < 12){
+    greeting = "Good Morning";
+}
+else if(hour < 17){
+    greeting = "Good Afternoon";
+}
+else{
+    greeting = "Good Evening";
 }
 
-dashboardNav.addEventListener("click", function(){
+if(savedName){
+    welcomeText.textContent =
+    greeting + ", " + savedName + "!";
+} 
+if(savedImage){
+    profileImage.src = savedImage;
+}
 
-    hideAllSections();
 
-    dashboardSection.style.display = "block";
-    tasksSection.style.display = "block";
+const moodSelect =
+document.getElementById("moodSelect");
+
+if(moodSelect){
+
+    const savedMood =
+    localStorage.getItem("studentMood");
+
+    if(savedMood){
+
+        moodSelect.value = savedMood;
+    }
+
+    moodSelect.addEventListener("change",function(){
+
+        localStorage.setItem(
+            "studentMood",
+            moodSelect.value
+        );
+
+    });
+}
+
+function updateStreak(){
+
+    const completedTasks = document.querySelectorAll("#taskList li.completed").length;
+    document.getElementById("streakText").textContent =  completedTasks + "🔥";
+}
+
+function updateUpcomingTask(){
+
+    const tasks = document.querySelectorAll("#taskList li");
+
+    let nearestTask = null;
+    let nearestDate = null;
+
+    tasks.forEach(function(task){
+
+        if(task.classList.contains("completed")){
+            return;
+        }
+
+        const taskName = task.querySelector(".task-text").textContent;
+        const dueDate = task.querySelector(".due-date").textContent.replace("Due: ","");
+
+        if(dueDate){
+
+            const today = new Date(); 
+            today.setHours(0,0,0,0);
+            const currentDate = new Date(dueDate);
+              if(currentDate < today){
+                 return;
+               }
+
+            if(nearestDate === null || currentDate < nearestDate){
+
+                nearestDate = currentDate;
+                nearestTask = taskName;
+            }
+        }
+    });
+
+    const upcomingTask = document.getElementById("upcomingTask");
+    if(nearestTask){
+        upcomingTask.textContent = nearestTask;
+    }
+    else{
+        upcomingTask.textContent ="No deadlines";
+    }
+}
+
+const quotes = [
+    "Small progress is still progress.",
+    "Discipline beats motivation.",
+    "Keep showing up.",
+    "Done is better than perfect.",
+    "Focus on the next step.",
+    "Consistency creates results."
+];
+
+function loadQuote(){
+
+    const randomIndex =Math.floor(Math.random() * quotes.length);
+    document.getElementById("quoteText").textContent =quotes[randomIndex];
+}
+
+let timer;
+let timeLeft = 1500;
+
+const timerText =document.getElementById("timerText");
+function updateTimerDisplay(){
+
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds =timeLeft % 60;
+    timerText.textContent = String(minutes).padStart(2,"0") + ":" + String(seconds).padStart(2,"0");
+}
+document.getElementById("startTimer")
+.addEventListener("click",function(){
+
+    clearInterval(timer);
+
+    timer = setInterval(function(){
+
+        if(timeLeft > 0){
+
+            timeLeft--;
+
+            updateTimerDisplay();
+        }
+        else{
+
+            clearInterval(timer);
+            showToast("Study Session Complete 🍅");
+        }
+
+    },1000);
 });
+document.getElementById("pauseTimer").addEventListener("click",function(){
+   clearInterval(timer);
 
-attendanceNav.addEventListener("click", function(){
-
-    hideAllSections();
-
-    attendanceSection.style.display = "block";
 });
+document.getElementById("resetTimer").addEventListener("click",function(){
 
-tasksNav.addEventListener("click", function(){
+    clearInterval(timer);
 
-    hideAllSections();
+    timeLeft = 1500;
 
-    tasksSection.style.display = "block";
+    updateTimerDisplay();
 });
-
-timetableNav.addEventListener("click", function(){
-
-    hideAllSections();
-
-    timetableSection.style.display = "block";
-});
-
-settingsNav.addEventListener("click", function(){
-
-    hideAllSections();
-
-    settingsSection.style.display = "block";
-});
-
+updateTimerDisplay();

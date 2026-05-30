@@ -6,6 +6,7 @@
     <body>
         <div class="attendance-container">
             <h2>Attendance Tracker</h2>
+            <p class="attendance-subtitle">Track subject-wise attendance and stay above 75%.</p>
             <div class="attendance-input-area">
 
                 <input type="text" id="subjectInput" placeholder="Enter subject">
@@ -16,6 +17,14 @@
 
                 <button id="addAttendanceBtn">Add</button>
 
+            </div>
+            <div class="overall-attendance">
+                <h3>Overall Attendance</h3>
+                <p id="overallPercentage">0%</p>
+
+            <div class="progress-bar">
+            <div id="overallProgress" class="progress-fill"></div>
+            </div>
             </div>
         <div id="attendanceList"></div>
     </div>

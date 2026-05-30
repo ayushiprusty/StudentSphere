@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Settings - StudentSphere</title>
+    <link rel="stylesheet" href="../Settings/settings.css">
+</head>
+<body>
+
+<div class="settings-container">
+
+    <h2>Settings</h2>
+
+    <div class="settings-card">
+
+        <label>Display Name</label>
+
+        <input
+            type="text" id="usernameInput" placeholder="Enter your name">
+        <img id="profilePreview" src="../Images/Default-avatar.png" alt="Profile Picture">
+
+        <input type="file" id="profileImageInput" accept="image/*">
+        <button id="saveSettingsBtn">Save Changes</button>
+        <button id="resetDataBtn">Reset All Data</button>
+        <p id="settingsMessage"></p>
+    </div>
+
+</div>
+<div class="settings-info">
+    <p id="taskStats"></p>
+    <p id="attendanceStats"></p>
+</div>
+
+<script src="../Settings/settings.js"></script>
+
+</body>
+</html>
